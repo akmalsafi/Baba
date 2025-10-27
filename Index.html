@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahman Baba - Pashto Sufi Poet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1D2B53;
+            --secondary-color: #FEF5E7;
+            --accent-color: #D4AF37;
+            --text-dark: #333333;
+            --text-light: #F5F5DC;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 4rem;
+            --border-radius: 4px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            padding: var(--spacing-md) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: var(--spacing-lg);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(29, 43, 83, 0.8), rgba(29, 43, 83, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231D2B53"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23D4AF37" stroke-width="1" opacity="0.2"/></svg>');
+            background-size: cover;
+            color: var(--text-light);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-light);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-lg);
+            font-style: italic;
+        }
+
+        /* Sections */
+        section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: var(--spacing-md) auto;
+        }
+
+        /* Poems Grid */
+        .poems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .poem-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .dark-mode .poem-card {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .poem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .poem-card-content {
+            padding: var(--spacing-md);
+        }
+
+        .poem-card h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .dark-mode .poem-card h3 {
+            color: var(--accent-color);
+        }
+
+        .poem-card p {
+            color: var(--text-dark);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .dark-mode .poem-card p {
+            color: var(--text-light);
+        }
+
+        .poem-card .read-more {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Search & Filter */
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 400px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .dark-mode .search-box input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+        }
+
+        .filter-options {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+
+        .filter-options select {
+            padding: var(--spacing-md);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .dark-mode .filter-options select {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+        }
+
+        /* Poem Detail */
+        .poem-detail {
+            max-width: 800px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .poem-detail.active {
+            display: block;
+        }
+
+        .poem-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .poem-original {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+            text-align: right;
+            direction: rtl;
+        }
+
+        .poem-translation {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: var(--spacing-lg);
+            border-top: 1px solid #ddd;
+            padding-top: var(--spacing-md);
+        }
+
+        .dark-mode .poem-translation {
+            border-top-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .poem-actions {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .btn {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: var(--spacing-md);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .dark-mode .form-group input,
+        .dark-mode .form-group textarea {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: var(--spacing-md);
+            border: none;
+            border-radius: var(--border-radius);
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: var(--spacing-xl) 0 var(--spacing-md);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-section h3 {
+            color: var(--text-light);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav li {
+                margin: 0 var(--spacing-sm);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .search-filter {
+                flex-direction: column;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Rahman Baba</a>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Hem</a></li>
+                        <li><a href="#poems">Dikter</a></li>
+                        <li><a href="#about">Om Rahman Baba</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle" id="themeToggle">Mörkt läge</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Rahman Baba</h1>
+            <p>"Kärlekens och visdomens röst i pashto poesi"</p>
+            <a href="#poems" class="btn btn-primary">Upptäck hans poesi</a>
+        </div>
+    </section>
+
+    <!-- Poems Section -->
+    <section id="poems">
+        <div class="container">
+            <h2 class="section-title">Diktsamling</h2>
+            
+            <!-- Search and Filter -->
+            <div class="search-filter">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Sök efter dikter...">
+                </div>
+                <div class="filter-options">
+                    <select id="themeFilter">
+                        <option value="">Alla ämnen</option>
+                        <option value="kärlek">Kärlek</option>
+                        <option value="andlighet">Andlighet</option>
+                        <option value="natur">Natur</option>
+                        <option value="visdom">Visdom</option>
+                    </select>
+                    <select id="languageFilter">
+                        <option value="">Alla språk</option>
+                        <option value="pashto">Pashto</option>
+                        <option value="svenska">Svenska</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Poems Grid -->
+            <div class="poems-grid" id="poemsGrid">
+                <!-- Poems will be dynamically loaded here -->
+            </div>
+            
+            <!-- Poem Detail View -->
+            <div class="poem-detail" id="poemDetail">
+                <div class="poem-header">
+                    <h2 id="poemTitle"></h2>
+                    <p id="poemTheme"></p>
+                </div>
+                <div class="poem-original" id="poemOriginal"></div>
+                <div class="poem-translation" id="poemTranslation"></div>
+                <div class="poem-actions">
+                    <button class="btn btn-secondary" id="backToList">
+                        <span>←</span> Tillbaka till listan
+                    </button>
+                    <button class="btn btn-primary" id="sharePoem">
+                        <span>↗</span> Dela dikt
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Om Rahman Baba</h2>
+            <div class="about-content">
+                <div>
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'><rect width='300' height='400' fill='%231D2B53'/><text x='150' y='200' font-family='Arial' font-size='24' fill='%23D4AF37' text-anchor='middle'>Rahman Baba Porträtt</text></svg>" alt="Rahman Baba" class="about-image">
+                </div>
+                <div>
+                    <p>Abdur Rahmān Bābā (1632–1706), även känd som Rahman Baba, var en framstående pashto-sufisk poet och andlig ledare från Peshawarregionen i nuvarande Pakistan.</p>
+                    <p>Hans poesi, samlad i "Dīwān", uttrycker djupa sufiska teman om gudomlig kärlek, mänsklighet och andlig sökning. Hans verk har haft ett bestående inflytande på pashtunsk kultur och litteratur.</p>
+                    <p>Rahman Babas dikter är kända för sin enkelhet, djupa känsla och universella budskap om kärlek och tolerans. Hans poesi fortsätter att inspirera läsare över hela världen.</p>
+                    <p>Genom sina verser förenade han jordisk och gudomlig kärlek, och hans ord resonerar fortfarande med dem som söker andlig mening och inre frid.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Kontakt</h2>
+            <div class="contact-content">
+                <p>Har du frågor om Rahman Baba eller hans poesi? Tveka inte att kontakta oss!</p>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Namn</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-post</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Meddelande</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Skicka meddelande</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Rahman Baba</h3>
+                    <p>En webbsida tillägnad den pashto-sufiska poeten Rahman Baba och hans tidlösa poesi.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Länkar</h3>
+                    <ul>
+                        <li><a href="#home">Hem</a></li>
+                        <li><a href="#poems">Dikter</a></li>
+                        <li><a href="#about">Om Rahman Baba</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Följ oss</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Rahman Baba Poesi. Alla rättigheter förbehållna.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // Sample poems data
+        const poems = [
+            {
+                id: 1,
+                title: "Kärlekens väg",
+                theme: "kärlek",
+                original: `څوک چې د عشق له لارې ځي
+            هغه به خپل منزل ته ورسيږي
+            که څه هم دا لاره ډېره نري ده
+            مګر د هغوی لپاره پرانیزه ده`,
+                translation: `Den som färdas på kärlekens väg
+            Han kommer att nå sitt mål
+            Även om denna väg är mycket smal
+            Är den öppen för dem`
+            },
+            {
+                id: 2,
+                title: "Gudomlig visdom",
+                theme: "andlighet",
+                original: `په هر ځای کې د هغه وجود ښکاري
+            مګر سترګې لرونکي یې نه ویني
+            هغه د زړونو په منځ کې دی
+            مګر پټ لیدونکي یې نه ویني`,
+                translation: `Hans närvaro strålar överallt
+            Men de med ögon ser honom inte
+            Han finns i hjärtanas innersta
+            Men de med fördold blick ser honom inte`
+            },
+            {
+                id: 3,
+                title: "Naturens skönhet",
+                theme: "natur",
+                original: `د ګلانو په باغ کې زه یوازې يم
+            مګر زما د زړه په منځ کې هغه دی
+            هر ګل د هغه د جمال یو نښان دی
+            او هر وزه د هغه د عظمت یو نشان دی`,
+                translation: `I blomstergården är jag ensam
+            Men i mitt hjärtas innersta finns han
+            Varje blomma är ett tecken på hans skönhet
+            Och var gren ett vittne om hans storhet`
+            },
+            {
+                id: 4,
+                title: "Inre frid",
+                theme: "visdom",
+                original: `آرام د زړه په منځ کې موندل کیږي
+            نه په بهرنۍ نړۍ کې
+            که چیرې تاته د آرام ژوند غواړې
+            خپل زړه د هغه په لور واړوه`,
+                translation: `Frid finns i hjärtats innersta
+            Inte i den yttre världen
+            Om du vill leva i frid
+            Vänd ditt hjärta mot honom`
+            },
+            {
+                id: 5,
+                title: "Evig kärlek",
+                theme: "kärlek",
+                original: `زه به تل ستا سره يم
+            که څه هم زما جسم به وي نه شته
+            زما روح به ستا سره وي
+            تر ابد پورې`,
+                translation: `Jag kommer alltid att vara med dig
+            Även om min kropp inte längre finns
+            Min själ kommer att vara med dig
+            För all evighet`
+            },
+            {
+                id: 6,
+                title: "Andlig resa",
+                theme: "andlighet",
+                original: `د روح سفر بی پایه دی
+            هر ګام نوی دروازه دی
+            د عشق په مرسته
+            ته به خپل مقصد ومومی`,
+                translation: `Själens resa är oändlig
+            Varje steg är en ny portal
+            Med kärlekens hjälp
+            Kommer du att hitta ditt mål`
+            }
+        ];
+
+        // DOM Elements
+        const poemsGrid = document.getElementById('poemsGrid');
+        const poemDetail = document.getElementById('poemDetail');
+        const poemTitle = document.getElementById('poemTitle');
+        const poemTheme = document.getElementById('poemTheme');
+        const poemOriginal = document.getElementById('poemOriginal');
+        const poemTranslation = document.getElementById('poemTranslation');
+        const backToList = document.getElementById('backToList');
+        const sharePoem = document.getElementById('sharePoem');
+        const searchInput = document.getElementById('searchInput');
+        const themeFilter = document.getElementById('themeFilter');
+        const languageFilter = document.getElementById('languageFilter');
+        const themeToggle = document.getElementById('themeToggle');
+        const backToTop = document.getElementById('backToTop');
+        const contactForm = document.getElementById('contactForm');
+
+        // Initialize the page
+        function init() {
+            renderPoems(poems);
+            setupEventListeners();
+        }
+
+        // Render poems in the grid
+        function renderPoems(poemsToRender) {
+            poemsGrid.innerHTML = '';
+            
+            poemsToRender.forEach(poem => {
+                const poemCard = document.createElement('div');
+                poemCard.className = 'poem-card';
+                poemCard.innerHTML = `
+                    <div class="poem-card-content">
+                        <h3>${poem.title}</h3>
+                        <p>${poem.theme.charAt(0).toUpperCase() + poem.theme.slice(1)}</p>
+                        <p>${poem.translation.split('\n')[0]}...</p>
+                        <a href="#" class="read-more" data-id="${poem.id}">Läs mer →</a>
+                    </div>
+                `;
+                poemsGrid.appendChild(poemCard);
+            });
+            
+            // Add event listeners to read more links
+            document.querySelectorAll('.read-more').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const poemId = parseInt(this.getAttribute('data-id'));
+                    showPoemDetail(poemId);
+                });
+            });
+        }
+
+        // Show poem detail view
+        function showPoemDetail(poemId) {
+            const poem = poems.find(p => p.id === poemId);
+            if (!poem) return;
+            
+            poemTitle.textContent = poem.title;
+            poemTheme.textContent = `Ämne: ${poem.theme.charAt(0).toUpperCase() + poem.theme.slice(1)}`;
+            poemOriginal.textContent = poem.original;
+            poemTranslation.textContent = poem.translation;
+            
+            // Hide grid and show detail
+            poemsGrid.style.display = 'none';
+            poemDetail.classList.add('active');
+            
+            // Scroll to top of poems section
+            document.getElementById('poems').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Back to list button
+            backToList.addEventListener('click', function() {
+                poemDetail.classList.remove('active');
+                poemsGrid.style.display = 'grid';
+            });
+            
+            // Share poem button
+            sharePoem.addEventListener('click', function() {
+                const title = poemTitle.textContent;
+                const text = `${title}\n\n${poemOriginal.textContent}\n\n${poemTranslation.textContent}`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: title,
+                        text: text,
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('Dikten har kopierats till urklipp!');
+                    });
+                }
+            });
+            
+            // Search input
+            searchInput.addEventListener('input', filterPoems);
+            
+            // Theme filter
+            themeFilter.addEventListener('change', filterPoems);
+            
+            // Language filter
+            languageFilter.addEventListener('change', filterPoems);
+            
+            // Theme toggle
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                this.textContent = document.body.classList.contains('dark-mode') ? 'Ljust läge' : 'Mörkt läge';
+            });
+            
+            // Back to top button
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Contact form
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Tack för ditt meddelande! Vi återkommer så snart som möjligt.');
+                this.reset();
+            });
+            
+            // Scroll event for back to top button
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // Filter poems based on search and filters
+        function filterPoems() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedTheme = themeFilter.value;
+            
+            const filteredPoems = poems.filter(poem => {
+                const matchesSearch = poem.title.toLowerCase().includes(searchTerm) || 
+                                    poem.theme.toLowerCase().includes(searchTerm) ||
+                                    poem.translation.toLowerCase().includes(searchTerm);
+                
+                const matchesTheme = !selectedTheme || poem.theme === selectedTheme;
+                
+                return matchesSearch && matchesTheme;
+            });
+            
+            renderPoems(filteredPoems);
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
